@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TestJob</string>
+
+    <string name="splashActivity.logo.test">Test</string>
+    <string name="splashActivity.logo.job">Job</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Регистрация</string>
+
+    <string name="title_activity_validation">Проверка</string>
+    <string name="title_activity_work_space">Добро пожаловать!</string>
+
+</resources>

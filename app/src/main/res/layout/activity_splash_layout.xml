@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="ru.goryachev.testjob.activities.SplashActivity"
+    android:gravity="center_vertical|center_horizontal">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView android:text="@string/splashActivity.logo.test" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_logo_1"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="false"
+            android:textStyle="bold"
+            android:textSize="64sp" />
+
+        <TextView android:text="@string/splashActivity.logo.job" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="52sp"
+            android:gravity="center_horizontal"
+            android:id="@+id/text_logo_2"
+            android:layout_below="@+id/text_logo_1"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
