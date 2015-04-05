@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="The cake is lie... \n(c) Portal"
+        android:text="The Cake is a Lie... \n© Portal"
         android:id="@+id/textView2"
         android:lines="2"
         android:gravity="center_vertical|center_horizontal" />

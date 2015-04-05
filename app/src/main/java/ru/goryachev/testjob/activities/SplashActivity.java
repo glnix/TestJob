@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -15,9 +14,9 @@ import com.nineoldandroids.animation.Animator;
 
 import ru.goryachev.testjob.R;
 
-public class SplashActivity extends ActionBarActivity {
+public class SplashActivity extends Activity {
     //Время показа активити включая вермя анимации
-    private static final int SPLASH_SCREEN_SHOW_TIME = 3500;
+    private static final int SPLASH_SCREEN_SHOW_TIME = 3000;
     //Время анимации первого текста логотипа
     private static final int FIRST_ANIMATION_DURATION = 1500;
     //Время анимации второго текста логотипа
@@ -71,7 +70,7 @@ public class SplashActivity extends ActionBarActivity {
 //                    Первый запуск
                     case -1:
                         i = new Intent(context, LoginActivity.class);
-//                        Сообщаем, что стартуем первый раз
+//                    Сообщаем, что стартуем первый раз
                         i.putExtra("First_start", true);
                         startActivity(i);
                         editor.putInt(statusPrefName, 0);

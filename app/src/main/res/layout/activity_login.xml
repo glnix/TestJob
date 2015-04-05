@@ -23,13 +23,14 @@
         android:id="@+id/button_login"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Зарегистрироваться" />
+        android:text="Зарегистрироваться"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+7"
-        android:id="@+id/text.plus_seven"
+        android:id="@+id/text_plus_seven"
         android:layout_alignBottom="@+id/input_phone"
         android:layout_toLeftOf="@+id/input_phone"
         android:layout_toStartOf="@+id/input_phone"
@@ -45,4 +46,12 @@
         android:layout_above="@+id/input_phone"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_operator_logo"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp" />
 </RelativeLayout>

@@ -14,6 +14,7 @@ import android.telephony.SmsMessage;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -34,6 +35,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
     //   Элементы экрана
     private EditText validationCodeEditText;
     private Button okButton;
+    private TextView forgetText;
 
     // Для доступа к SharedPreferences
     SharedPreferences preferences;
@@ -48,9 +50,11 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
 //        Найдем элементы экрана
         validationCodeEditText = (EditText) findViewById(R.id.code_input);
         okButton = (Button) findViewById(R.id.button_ok);
+        forgetText = (TextView) findViewById(R.id.text_forget);
 
         //Делаем слушателем нажатия кнопки текущую активити
         okButton.setOnClickListener(this);
+        forgetText.setOnClickListener(this);
 
         //Получаем доступ к SharedPreferences
         preferences = activity.getSharedPreferences("AppPrefs", MODE_PRIVATE);
@@ -69,6 +73,13 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
             case R.id.button_ok:
                 String code = validationCodeEditText.getText().toString();
                 sendRegRequest(code);
+                break;
+
+            case R.id.text_forget:
+                preferencesEditor.putInt("Application_status", 0);
+                preferencesEditor.apply();
+                startActivity(new Intent(activity, LoginActivity.class));
+                finish();
                 break;
         }
     }
@@ -108,19 +119,22 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
                     progressDialog.dismiss();
                     switch (statusCode) {
                         case 0:
+                            Crouton.cancelAllCroutons();
                             Crouton.makeText(activity, "Проверьте соединение с интернетом", Style.ALERT).show();
                             validationCodeEditText.requestFocus();
                             break;
                         case 400:
-                            Crouton.makeText(activity, "Не верно введен проверочный код", Style.ALERT).show();
+                            Crouton.cancelAllCroutons();
+                            Crouton.makeText(activity, "Неверно введен проверочный код", Style.ALERT).show();
                             validationCodeEditText.requestFocus();
                             break;
                     }
                 }
             });
         } else {
+            Crouton.cancelAllCroutons();
             Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            Crouton.makeText(activity, "Не верно введен проверочный код", Style.ALERT).show();
+            Crouton.makeText(activity, "Неверно введен проверочный код", Style.ALERT).show();
             YoYo.with(Techniques.Shake).duration(500).playOn(validationCodeEditText);
             vibrator.vibrate(500);
             validationCodeEditText.requestFocus();
@@ -135,7 +149,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if (intent.getAction() == SMS_RECEIVED) {
+            if (intent.getAction().equals(SMS_RECEIVED)) {
                 Bundle bundle = intent.getExtras();
                 if (bundle != null) {
                     Object[] pdus = (Object[]) bundle.get("pdus");
@@ -158,6 +172,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Crouton.cancelAllCroutons();
         if (receiver != null)
             unregisterReceiver(receiver);
     }
