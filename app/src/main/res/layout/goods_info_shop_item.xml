@@ -30,12 +30,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Item date"
+        android:id="@+id/item_price_date"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/item_price_date"
+        android:layout_toStartOf="@+id/item_price_date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Item price"
         android:id="@+id/item_price_date"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp" />
 
 </RelativeLayout>
