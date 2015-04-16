@@ -93,7 +93,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
     private void sendRegRequest(String code) {
         if (codeCheck(code)) {
             final ProgressDialog progressDialog = new ProgressDialog(activity, ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage("Регистрация...");
+            progressDialog.setMessage(getString(R.string.dialog_progress_register));
             progressDialog.show();
             HTTPClient httpClient = HTTPClient.getInstance();
 //                    Параметры запроса
@@ -106,7 +106,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
                     if (statusCode == 200) {
                         preferencesEditor.putInt("Application_status", 2);
                         preferencesEditor.apply();
-                        Intent i = new Intent(activity, WorkspaceActivity.class);
+                        Intent i = new Intent(activity, SearchActivity.class);
 
                         progressDialog.dismiss();
                         startActivity(i);
@@ -120,12 +120,12 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
                     switch (statusCode) {
                         case 0:
                             Crouton.cancelAllCroutons();
-                            Crouton.makeText(activity, "Проверьте соединение с интернетом", Style.ALERT).show();
+                            Crouton.makeText(activity, getString(R.string.error_connection_fail), Style.ALERT).show();
                             validationCodeEditText.requestFocus();
                             break;
                         case 400:
                             Crouton.cancelAllCroutons();
-                            Crouton.makeText(activity, "Неверно введен проверочный код", Style.ALERT).show();
+                            Crouton.makeText(activity, getString(R.string.error_validation_code_fail), Style.ALERT).show();
                             validationCodeEditText.requestFocus();
                             break;
                     }
@@ -134,7 +134,7 @@ public class ValidationActivity extends ActionBarActivity implements View.OnClic
         } else {
             Crouton.cancelAllCroutons();
             Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            Crouton.makeText(activity, "Неверно введен проверочный код", Style.ALERT).show();
+            Crouton.makeText(activity, getString(R.string.error_validation_code_fail), Style.ALERT).show();
             YoYo.with(Techniques.Shake).duration(500).playOn(validationCodeEditText);
             vibrator.vibrate(500);
             validationCodeEditText.requestFocus();

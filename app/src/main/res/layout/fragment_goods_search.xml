@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/item_image">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите название продукта:"
+        android:id="@+id/goods_search_message"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp" />
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/goods_name_autocomplete"
+        android:layout_gravity="center_horizontal"
+        android:editable="true"
+        android:enabled="true"
+        android:layout_below="@+id/goods_search_message"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:singleLine="true"
+        android:clickable="true"
+        android:inputType="text"
+        android:textIsSelectable="true"
+        android:imeOptions="actionSearch" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@android:drawable/ic_menu_view"
+        android:layout_alignTop="@+id/goods_name_autocomplete"
+        android:layout_alignBottom="@+id/goods_name_autocomplete"
+        android:layout_alignRight="@+id/goods_name_autocomplete"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:onClick="click" />
+</RelativeLayout>

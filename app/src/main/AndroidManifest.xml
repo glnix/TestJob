@@ -33,7 +33,7 @@
             android:label="@string/title_activity_validation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.WorkspaceActivity"
+            android:name=".activities.SearchActivity"
             android:label="@string/title_activity_work_space"
             android:screenOrientation="portrait" />
 

@@ -6,55 +6,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.nineoldandroids.animation.Animator;
 
 import ru.goryachev.testjob.R;
 
 public class SplashActivity extends Activity {
     //Время показа активити включая вермя анимации
-    private static final int SPLASH_SCREEN_SHOW_TIME = 3000;
+    private static final int SPLASH_SCREEN_SHOW_TIME = 2000;
     //Время анимации первого текста логотипа
     private static final int FIRST_ANIMATION_DURATION = 1500;
-    //Время анимации второго текста логотипа
-    private static final int SECOND_ANIMATION_DURATION = 1000;
     public static final String TAG = "LOGTAG";
-    //Контектс
+    //Контекст
     private Context context = this;
     private Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_layout);
+        setContentView(R.layout.activity_splash);
         //Анимация
-        //Делаем вторую строчку логотипа невидимой
-        findViewById(R.id.text_logo_2).setVisibility(View.INVISIBLE);
-        YoYo.with(Techniques.FadeIn).duration(FIRST_ANIMATION_DURATION).withListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                findViewById(R.id.text_logo_2).setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn).duration(SECOND_ANIMATION_DURATION).playOn(findViewById(R.id.text_logo_2));
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        }).playOn(findViewById(R.id.text_logo_1));
+        YoYo.with(Techniques.FadeIn).duration(FIRST_ANIMATION_DURATION).playOn(findViewById(R.id.text_logo_1));
 
         //Задержка
         new Handler().postDelayed(new Runnable() {
@@ -66,7 +39,8 @@ public class SplashActivity extends Activity {
                 String statusPrefName = "Application_status";
                 int status = preferences.getInt(statusPrefName, -1);
                 Intent i;
-                switch (status){
+                //DEBUG: заменить цифру пременной status
+                switch (2) {
 //                    Первый запуск
                     case -1:
                         i = new Intent(context, LoginActivity.class);
@@ -86,10 +60,10 @@ public class SplashActivity extends Activity {
                     case 1:
                         i = new Intent(context, ValidationActivity.class);
                         startActivity(i);
-                       break;
+                        break;
 //                      Приложение зарегестрировано
                     case 2:
-                        i = new Intent(context, WorkspaceActivity.class);
+                        i = new Intent(context, SearchActivity.class);
                         startActivity(i);
                         break;
                 }

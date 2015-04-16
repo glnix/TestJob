@@ -105,12 +105,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     //    Диалог рассказывающй о сервисе
     private void showHelloDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
-        dialogBuilder.setTitle("Новости")
-                .setMessage("Данное приложение позволяет зарегистрироваться на очень крутом" +
-                        " сервисе, используя SMS аутентификацию.\nЕсли зарегистрируетесь," +
-                        " то получите тортик.")
+        dialogBuilder.setTitle(getString(R.string.dialog_hello_title))
+                .setMessage(getString(R.string.dialog_hello_message))
                 .setCancelable(false)
-                .setPositiveButton("Я хочу тортик!", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.dialog_hello_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -128,7 +126,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     sendRegRequest(phoneNumber);
                 } else {
                     Crouton.cancelAllCroutons();
-                    Crouton.makeText(activity, "Неверно введен номер телефона", Style.ALERT).show();
+                    Crouton.makeText(activity, getString(R.string.error_incorrect_format_number), Style.ALERT).show();
                     Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                     YoYo.with(Techniques.Shake).duration(500).playOn(phoneEditText);
                     vibrator.vibrate(500);
@@ -148,7 +146,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         params.put("dosms", "1");
 
         final ProgressDialog progressDialog = new ProgressDialog(activity, ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Регистрация...");
+        progressDialog.setMessage(getString(R.string.dialog_progress_register));
         progressDialog.show();
 
         httpClient.post("http://phasorweb.com/register/", params, new AsyncHttpResponseHandler() {
@@ -191,12 +189,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 switch (statusCode) {
                     case 0:
                         Crouton.cancelAllCroutons();
-                        Crouton.makeText(activity, "Проверьте соединение с интернетом", Style.ALERT).show();
+                        Crouton.makeText(activity, getString(R.string.error_connection_fail), Style.ALERT).show();
                         phoneEditText.requestFocus();
                         break;
                     case 400:
                         Crouton.cancelAllCroutons();
-                        Crouton.makeText(activity, "Неверно введен номер телефона", Style.ALERT).show();
+                        Crouton.makeText(activity, getString(R.string.error_incorrect_format_number), Style.ALERT).show();
                         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                         YoYo.with(Techniques.Shake).duration(500).playOn(phoneEditText);
                         vibrator.vibrate(500);
